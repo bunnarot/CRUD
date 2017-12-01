@@ -1,0 +1,121 @@
+<button class="btn btn-primary" data-toggle="modal" data-target="#myModal">เพิ่ม</button>
+<!-- <div class="alert alert-success" *ngIf="add_success">เพิ่มข้อมูลเรียบร้อยแล้ว</div>
+<div class="alert alert-success" *ngIf="del_success">ลบข้อมูลเรียบร้อยแล้ว</div>
+<div class="alert alert-success" *ngIf="up_success">แก้ไขข้อมูลเรียบร้อยแล้ว</div> -->
+<table class="table">
+  <thead>
+    <th>Account Number</th>
+    <th>Branch Name</th>
+    <th>Balance</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let l of data | async">
+      <td>{{ l.account_number }}</td>
+      <td>{{ l.branch_name }}</td>
+      <td>{{ l.balance }}</td>
+      <td>
+        <button class="btn btn-warning" data-toggle="modal" data-target="#myEdit" (click)="onEdit(l.account_number)">แก้ไข</button>
+        <button class="btn btn-danger" (click)="onDelete(l.account_number)">ลบ</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">เพิ่มข้อมูล</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-10 col-md-offset-1">
+            <form action="javascript:void(0)" (submit)="onSubmit($event)" class="form-horizontal">
+              <div class="form-group">
+                <label for="" class="control-label col-md-4">Account Number</label>
+                <div class="col-md-8">
+                  <input type="text" name="account_number" id="account_number" class="form-control">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="" class="control-label col-md-4">Branch Name</label>
+                <div class="col-md-8">
+                  <input type="text" name="branch_name" id="branch_name" class="form-control">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="" class="control-label col-md-4">Balance</label>
+                <div class="col-md-8">
+                  <input type="text" name="balance" id="balance" class="form-control">
+                </div>
+              </div>
+              <div class="col-md-4 col-md-offset-4">
+                <button class="btn btn-success" type="submit">เพิ่ม</button>
+                <button class="btn btn-danger" id="reset" type="reset">รีเซ็ต</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" id="close" data-dismiss="modal">ปิด</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div id="myEdit" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">แก้ไขข้อมูล</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-10 col-md-offset-1">
+            <form action="javascript:void(0)" (submit)="onUpdate($event)" class="form-horizontal">
+              <div class="form-group">
+                <label for="" class="control-label col-md-4">Account Number</label>
+                <div class="col-md-8">
+                  <input type="text" name="acc" id="acc" class="form-control" disabled>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="" class="control-label col-md-4">Branch Name</label>
+                <div class="col-md-8">
+                  <input type="text" name="bn" id="bn" class="form-control" disabled>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="" class="control-label col-md-4">Balance</label>
+                <div class="col-md-8">
+                  <input type="text" name="ba" id="ba" class="form-control">
+                </div>
+              </div>
+              <div class="col-md-4 col-md-offset-4">
+                <button class="btn btn-success" type="submit">แก้ไข</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" id="close" data-dismiss="modal">ปิด</button>
+      </div>
+    </div>
+
+  </div>
+</div>
