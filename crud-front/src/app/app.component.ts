@@ -60,9 +60,10 @@ export class AppComponent {
   onEdit(id) {
 
     this.app.editData(id).subscribe(res => {
-        document.getElementById('acc').value = id;
-        document.getElementById('bn').value = res[0].branch_name;
-        document.getElementById('ba').value = res[0].balance;
+
+        (<HTMLInputElement>document.getElementById('acc')).value = id;
+        (<HTMLInputElement>document.getElementById('bn')).value = res[0].branch_name;
+        (<HTMLInputElement>document.getElementById('ba')).value = res[0].balance;
     });
 
   }

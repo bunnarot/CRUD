@@ -17,7 +17,7 @@ var tmp;
 var con = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "root",
+    password: "",
     database: "banking"
 });
 app.get('/',function (req,res) {
